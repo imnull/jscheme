@@ -1,4 +1,22 @@
-const { T } = require('./t');
+const { T } = require('./type');
+const { equalArray } = require('./type');
+
+class PathItem {
+    constructor(path, value, type){
+        this.path = [ ...path ];
+        this.value = value;
+        this.type = type;
+    }
+
+    clone(){
+        return new PathItem(this.path, this.value, this.type)
+    }
+
+    equal(item){
+        return this.value === item.value && equalArray(this.path, item.path);
+    }
+}
+PathItem.create = ({ path, value, type }) => new PathItem(path, value, type);
 
 const PATH = {
     'Array': (v, b, p, t) => {
@@ -23,9 +41,12 @@ const _path = (v, b, p, trap) => {
     }
 }
 
-const path = (v) => {
+const path = (v, asItem = true) => {
     let b = [], p = [], t = [];
     _path(v, b, p, t);
+    if(asItem){
+        p = p.map(it => PathItem.create(it));
+    }
     return p;
 };
 
