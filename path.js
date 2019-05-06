@@ -24,7 +24,7 @@ const PATH = {
     },
     'Object': (v, b, p, t) => {
         Object.keys(v).forEach(i => _path(v[i], [...b, i], p, t))
-    }
+    },
 };
 
 const _path = (v, b, p, trap) => {
@@ -52,5 +52,8 @@ const path = (v, asItem = true) => {
 
 module.exports = {
     path,
-    pathExtend: (name, fn) => PATH[name] = fn
+    pathExtend: (name, fn) => {
+        let f = PATH[name];
+        return PATH[name] = (v) => fn(v, f);
+    },
 };

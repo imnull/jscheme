@@ -3,7 +3,7 @@
 
 *JScheme也可以处理常见的JavaScript对象*
 
-这是个好用来解构和操作JSON对象这种嵌套结构的工具。
+这是个用来解构和操作JSON对象这种嵌套结构的工具。
 
 ## path
 
@@ -120,3 +120,5 @@ console.log(r.ee);
   gg: 1 }
 [ 1, { aaa: 1, ccc: [ 7, 8, 9 ] } ]
 ```
+
+## conv
