@@ -51,5 +51,6 @@ const path = (v, asItem = true) => {
 };
 
 module.exports = {
-    path
+    path,
+    pathExtend: (name, fn) => PATH[name] = fn
 };
